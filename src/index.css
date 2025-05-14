@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@theme {
+  --font-titles: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --color-body: #EAEAEA;
+  --color-primary: #0072CE;
+  --color-secondary: #CCFF00;
+  --color-text: #333333;
+  --color-footer: #222932;
+}
+
+h1 {
+  font-family: var(--font-titles);
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+
+h2 {
+  font-family: var(--font-titles);
+  font-weight: bolder;
+  color: var(--color-text);
+}
+
+p,
+span,
+a,
+li,
+button,
+input,
+textarea {
+  font-family: var(--font-body);
+  font-weight: normal;
+}
+
+body {
+  /* background-image: url('/fondo-padelistas.png');
+
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: scroll;
+  background-size: 100% 80%; */
+
+  background-color: var(--color-body);
+}
+/* Vamos a establecer manualmente que en tamaños moviles el texto del calendario esté pequeño */
+@media (max-width: 720px) {
+.txt-bienvenida{
+  color: white !important;
+}
+
+  
+  .fc .fc-toolbar-title {
+    font-size: 1rem !important;
+  }
+  .fc .fc-button {
+    font-size: 0.75rem !important;
+  }
+}
+.fc .fc-button {
+  
+  background-color: #0072CE;   
+  color: white;
+  border: none;
+}
+
+/* si hiciera falta */
+.fc .h-full {
+  height: 100% !important;
+}
+.full-width-event {
+    width: 100% !important;
+    height: 150% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0072CE !important; /* Color azul */
+    color: white !important; /* Texto blanco */
+    border: none !important; /* Sin bordes */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
