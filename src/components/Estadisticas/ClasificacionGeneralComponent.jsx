@@ -39,8 +39,7 @@ const ClasificacionGeneralComponent = ({ actualizarEquipoSeleccionado }) => {
                                         sessionStorage.setItem('equipoNombreSeleccionado', equipo.equipo_nombre)
                                         sessionStorage.setItem('equipoIdSeleccionado', equipo.equipo_id)
                                         actualizarEquipoSeleccionado() // Llamamos a la función del padre para actualizar el estado
-                                    }}
-                                >
+                                    }}>
                                     {equipo.equipo_nombre}
                                 </button>
                             </td>

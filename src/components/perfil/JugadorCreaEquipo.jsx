@@ -5,7 +5,7 @@ const JugadorSinEquipo = (props) => {
     const [equipoNombre, setEquipoNombre] = useState('')
     const [id, setId] = props.id;
 
-    const createEquipo = (e) => {
+    const crearEquipo = (e) => {
         const options = {
             method: 'POST',
             headers: {
@@ -40,7 +40,7 @@ const JugadorSinEquipo = (props) => {
     }
     return (
         <div>
-            <form onSubmit={createEquipo}>
+            <form onSubmit={crearEquipo}>
                 <div className="grid grid-cols-1 md:grid-cols-2 text-center">
                     <label htmlFor="nombre" className='my-4'>Introduce el nombre del equipo</label>
                     <input type="text" name='nombre' className='w-full border-2 border-primary rounded p-2 m-2 hover:border-secondary' placeholder='Nombre' onChange={(e) =>{

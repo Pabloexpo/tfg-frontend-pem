@@ -55,7 +55,7 @@ const HistoricoEquipo = (props) => {
   }, [props.equipo])
 
   //Preparamos los datos para el gráfico de barras
-  const data = {
+  const datos = {
     //Establecemos las etiquetas de los meses en el eje X
     //Utilizamos el array de meses para mostrar el mes en formato texto
     labels: estadisticas.map(s => meses[s.mes - 1]),
@@ -79,7 +79,7 @@ const HistoricoEquipo = (props) => {
       }
     ]
   };
-  const options = {
+  const opciones = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -119,7 +119,7 @@ const HistoricoEquipo = (props) => {
       <h2 className="text-2xl font-bold mb-4">Histórico de Partidos</h2>
       <div className="w-full h-[300px]">
         {/* Ajustamos el tamaño del gráfico con clases responsivas */}
-        <Bar data={data} options={options} />
+        <Bar data={datos} options={opciones} />
       </div>
     </div>
   )

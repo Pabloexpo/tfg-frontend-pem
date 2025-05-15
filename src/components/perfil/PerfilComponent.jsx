@@ -55,7 +55,6 @@ const PerfilComponent = () => {
     }, [])
     const actualizarUsuario = (e) => {
         e.preventDefault()
-
         if (password !== password2) {
             setErrorSpan("Las contraseñas no coinciden");
             return;
@@ -71,12 +70,7 @@ const PerfilComponent = () => {
                 pwd_actual: pwdActual,
             })
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Credenciales incorrectas");
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 // Guardamos en localStorage solo en caso de que el nombre haya cambiado
                 // y lo actualizamos en el estado del componente

@@ -24,7 +24,7 @@ const CantidadPartidosEquipo = (props) => {
     }, [props.equipo])
 
     //Elaboramos los datos que le vamos a pasar al PIE de chatJS
-    const data = {
+    const datos = {
         labels: ['Ganados', `Perdidos`],
         datasets: [
             {
@@ -40,10 +40,10 @@ const CantidadPartidosEquipo = (props) => {
         <>
             {cantidad.length !== 0 ? (
                 <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px]">
-                    <Pie data={data} />
+                    <Pie data={datos} />
                 </div>
             ) : (
-                <p>Juega algún partido para mostrar datos</p>
+                <></>
             )}
         </>
     )

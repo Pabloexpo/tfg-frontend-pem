@@ -22,7 +22,7 @@ const PistaMasUtilizada = () => {
             <div className='mx-auto' >
           <Link to="/pistas">
             <button className='bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300'>
-              ¡Visita todas nuestras pistas!
+              ¡Visita todas nuestras estadísticas!
             </button>
           </Link>
         </div>

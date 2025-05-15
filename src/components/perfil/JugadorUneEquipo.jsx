@@ -14,9 +14,6 @@ const JugadorUneEquipo = () => {
     const getEquipos = () => {
         fetch(API_URL+'equipoNoJugadores')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al obtener los equipos");
-                }
                 return response.json();
             })
             .then(data => {
@@ -39,9 +36,6 @@ const JugadorUneEquipo = () => {
         }
         fetch(API_URL+'insertaJugadorEquipo', options)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al unirse al equipo");
-                }
                 return response.json();
             })
             .then(data => {

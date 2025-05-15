@@ -11,23 +11,16 @@ import CantidadPartidosEquipo from '../Estadisticas/CantidadPartidosEquipo.jsx'
 
 const EstadisticasPageComponent = () => {
     const [equipoSeleccionado, setEquipoSeleccionado] = useState(sessionStorage.getItem('equipoIdSeleccionado') || '')
-
+    
     const actualizarEquipoSeleccionado = () => {
         setEquipoSeleccionado(sessionStorage.getItem('equipoIdSeleccionado') || '')
     }
-
     useEffect(() => {
-        const handleStorageChange = () => {
+        const cambiosSessionStorage = () => {
             actualizarEquipoSeleccionado()
         }
-
         // Escuchar cambios en sessionStorage desde otras pestañas
-        window.addEventListener('storage', handleStorageChange)
-
-        // Limpieza del eventListener
-        return () => {
-            window.removeEventListener('storage', handleStorageChange)
-        }
+        window.addEventListener('storage', cambiosSessionStorage)
     }, [])
 
     return (
