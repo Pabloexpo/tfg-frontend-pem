@@ -6,7 +6,7 @@ const ClimaComponent = (props) => {
     const [avisoNoCLima, setAvisoNoClima] = useState('');
 
     useEffect(() => {
-        if (!props.fecha || !props.hora || !props.localidad) return;
+
 
         //Pasamos al fetch el dia con la localidad elegida
         fetch(`http://api.weatherapi.com/v1/forecast.json?key=e6f299f3df0e4199907131549252104&q=${props.localidad},Spain&dt=${props.fecha}`)

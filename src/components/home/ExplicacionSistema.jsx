@@ -7,6 +7,7 @@ const ExplicacionSistema = () => {
             <article className='flex flex-col justify-center space-y-3'>
                 <p>Nuestro sistema de reservas de pistas a lo largo de Cartagena te permitirá comprobar las pistas de nuestro catálogo disponibles para poder jugar, así como los equipos disponibles actuales y la meteorología prevista para esa hora exacta.</p>
                 <p>Siendo miembro y con equipo en activo, podrás comprobar tus estadísticas, tales como un histórico de partidos, un gráfico circular con el total de estos y la posibilidad de gestionar tus reservas</p>
+                <p>¡Ven a descubrir todo lo que Padelistas Cartagena te ofrece!</p>
             </article>
             {localStorage.access_token ? (
                 <div className='mx-auto' >
