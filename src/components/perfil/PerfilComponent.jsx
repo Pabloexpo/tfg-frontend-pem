@@ -12,6 +12,7 @@ import PistasUtilizadasEquipo from '../Estadisticas/PistasUtilizadasEquipo';
 import CantidadPartidosEquipo from '../Estadisticas/CantidadPartidosEquipo';
 import PartidosArbitradosº from './PartidosArbitrados';
 import PartidosArbitrados from './PartidosArbitrados';
+import IntegrantesEquipo from './IntegrantesEquipo';
 
 
 const PerfilComponent = () => {
@@ -175,7 +176,10 @@ const PerfilComponent = () => {
                                     onClick={() => setPeticionAbandono(true)}>Petición de cese de equipo</button>
                                 <span className='p-4'>{alertaDisolucion && "El Administrador será notificado de la petición de cese y será quién tenga la última palabra"}</span>
                                 {peticionAbandono && <PeticionAbandono id={id} equipo={equipo} setPeticionAbandono={setPeticionAbandono} />}
-                                <CantidadPartidosEquipo equipo={equipo} />
+                                <div className='flex md:flex-row justify-center flex-col items-center'>
+                                    <IntegrantesEquipo equipo={equipo} />
+                                    <CantidadPartidosEquipo equipo={equipo} />
+                                </div>
                             </div>
                         )}
                     </article>

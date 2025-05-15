@@ -5,6 +5,9 @@ import PistasUtilizadasEquipo from '../Estadisticas/PistasUtilizadasEquipo.jsx'
 import API_URL from '../functions/APIURL.jsx'
 import PartidosDisputadosEquipo from '../perfil/PartidosDisputadosEquipo.jsx'
 import GlobalesEquipo from '../Estadisticas/GlobalesEquipo.jsx'
+import IntegrantesEquipo from '../perfil/IntegrantesEquipo.jsx'
+import CantidadPartidosEquipo from '../Estadisticas/CantidadPartidosEquipo.jsx'
+
 
 const EstadisticasPageComponent = () => {
     const [equipoSeleccionado, setEquipoSeleccionado] = useState(sessionStorage.getItem('equipoIdSeleccionado') || '')
@@ -32,7 +35,7 @@ const EstadisticasPageComponent = () => {
             <h1 className='text-3xl font-bold text-center py-4'>Estadísticas</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
                 {/* Columna izquierda: Clasificación */}
-                <section className='bg-white rounded-lg shadow-md p-4'>
+                <section className='bg-white rounded-lg shadow-md p-4 '>
                     <h3 className="text-xl font-semibold mb-2">Clasificación general de los equipos</h3>
                     <ClasificacionGeneralComponent actualizarEquipoSeleccionado={actualizarEquipoSeleccionado} />
                 </section>
@@ -59,6 +62,14 @@ const EstadisticasPageComponent = () => {
             </div>
             {equipoSeleccionado && (
                 <>
+                    <section className='bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-4 md:w-fit w-5/6 m-auto items-center'>
+                        <article className="flex-1">
+                            <IntegrantesEquipo equipo={equipoSeleccionado} />
+                        </article>
+                        <article className="flex-1">
+                            <CantidadPartidosEquipo equipo={equipoSeleccionado} />
+                        </article>
+                    </section>
                     <section>
                         <PartidosDisputadosEquipo equipo={equipoSeleccionado} />
                     </section>

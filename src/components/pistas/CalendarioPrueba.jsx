@@ -9,23 +9,21 @@ import ContrincanteComponent from './ContrincanteComponent'
 import API_URL from '../functions/APIURL'
 
 export default function CalendarioComponent({ pista }) {
-    const [events, setEvents] = useState([])
+    const [eventos, setEventos] = useState([])
     const [dia, setDia] = useState(null)
     const [hora, setHora] = useState(null)
     const [localidad, setLocalidad] = useState('')
 
-    const [currentView, setCurrentView] = useState(
+    const [vistaActual, setVistaActual] = useState(
         window.innerWidth < 640 ? 'dayGridMonth' : 'timeGridWeek'
     )
 
-
     useEffect(() => {
-
-        const onResize = () => {
-            setCurrentView(window.innerWidth < 640 ? 'dayGridMonth' : 'timeGridWeek')
+        const redimensionar = () => {
+            setVistaActual(window.innerWidth < 640 ? 'dayGridMonth' : 'timeGridWeek')
         }
-        window.addEventListener('resize', onResize)
-        return () => window.removeEventListener('resize', onResize)
+        window.addEventListener('resize', redimensionar)
+        return () => window.removeEventListener('resize', redimensionar)
     }, [])
 
     useEffect(() => {
@@ -34,21 +32,26 @@ export default function CalendarioComponent({ pista }) {
         fetch(`${API_URL}reservasPista/${pista.pista_id}`)
             .then(res => res.json())
             .then(({ reservas }) => {
-                setEvents(reservas.map(r => ({
+                setEventos(reservas.map(r => ({
                     title: '🔒',
                     start: r.reserva_fecha
                 })))
             })
     }, [pista])
 
-    const onDateClick = info => {
-        const selectedDate = new Date(info.dateStr).toISOString()
-        const isReserved = events.some(event => {
-            const eventDate = new Date(event.start).toISOString()
-            return eventDate === selectedDate
+    const seleccionarFecha = info => {
+        const fechaSeleccionada = new Date(info.dateStr).toISOString()
+        const reservada = eventos.some(evento => {
+            const diaEvento = new Date(evento.start).toISOString()
+            return diaEvento === fechaSeleccionada
         })
-
-        if (isReserved) {
+        const diaActual = new Date(); 
+        const diaSeleccionado = new Date(info.dateStr);
+        if (diaSeleccionado < diaActual) {
+            alert('No puedes seleccionar una fecha pasada.')
+            return
+        }
+        if (reservada) {
             alert('Esta fecha ya está reservada. Por favor, selecciona otra.')
             return
         }
@@ -73,7 +76,7 @@ export default function CalendarioComponent({ pista }) {
             <div className="h-4/6 md:h-300px">
                 <FullCalendar
                     plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
-                    initialView={currentView}
+                    initialView={vistaActual}
                     locale={esLocale}
                     height="490px"
                     headerToolbar={{
@@ -91,8 +94,8 @@ export default function CalendarioComponent({ pista }) {
                     slotDuration="02:00:00"
                     allDaySlot={false}
                     selectable={true}
-                    events={events}
-                    dateClick={onDateClick}
+                    events={eventos}
+                    dateClick={seleccionarFecha}
                     selectOverlap={false}
                     eventDisplay="block"
                     eventClassNames={() => ['full-width-event']}

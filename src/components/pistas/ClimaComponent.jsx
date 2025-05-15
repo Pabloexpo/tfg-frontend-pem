@@ -1,27 +1,38 @@
-import React, { use, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const ClimaComponent = (props) => {
-    //En este componente vamos a mostrar el clima con las props que nos vienen del Calendario, es decir la fecha, la hora y la localidad
-    const [climaTexto, setClimaTexto] = React.useState('');
-    const [climaIcono, setClimaIcono] = React.useState('');
+    const [climaTexto, setClimaTexto] = useState('');
+    const [climaIcono, setClimaIcono] = useState('');
+    const [avisoNoCLima, setAvisoNoClima] = useState('');
+
     useEffect(() => {
-        console.log(props.localidad)
-        //Llamamos a la api del tiempo para obtener el clima -> LO HAREMOS CON LAS PROPS QUE RECIBIMOS y una api key obtenida de fuera
-        fetch(`http://api.weatherapi.com/v1/forecast.json?key=e6f299f3df0e4199907131549252104&q=${props.localidad},Spain&dt=${props.fecha}&hour=${props.hora}`)
+        if (!props.fecha || !props.hora || !props.localidad) return;
+
+        //Pasamos al fetch el dia con la localidad elegida
+        fetch(`http://api.weatherapi.com/v1/forecast.json?key=e6f299f3df0e4199907131549252104&q=${props.localidad},Spain&dt=${props.fecha}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data.current)
-                console.log(props.fecha, props.hora, props.localidad)
-                setClimaTexto(data.current.condition.text);
-                setClimaIcono(data.current.condition.icon);
-
+                //La api nos va a devolver un array de horas, tenemos que elegir la hora que pasamos por props
+                const horaSeleccionada = data.forecast.forecastday[0].hour.find(h => h.time.includes(props.hora));
+                if (horaSeleccionada) {
+                    setClimaTexto(horaSeleccionada.condition.text);
+                    setClimaIcono(horaSeleccionada.condition.icon);
+                } else {
+                    setAvisoNoClima('No hay información climática disponible para la hora seleccionada.');
+                }
             })
             .catch(error => console.error('Error:', error));
-    }, [])
+    }, [props.fecha, props.hora, props.localidad]);
+
     return (
         <div>
-            <img src={climaIcono} alt={`CLima previsto para ${props.localidad}`} />
+            {climaIcono ? (
+                <img src={climaIcono} alt={`Clima previsto para ${props.localidad}`} />
+            ) : (
+                <p>{avisoNoCLima}</p>
+            )}
         </div>
-    )
-}
-export default ClimaComponent
+    );
+};
+
+export default ClimaComponent;

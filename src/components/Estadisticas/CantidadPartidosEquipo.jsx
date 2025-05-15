@@ -38,8 +38,10 @@ const CantidadPartidosEquipo = (props) => {
     }
     return (
         <>
-            {cantidad.length!==0  ? ( 
-                <Pie data={data} />
+            {cantidad.length !== 0 ? (
+                <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px]">
+                    <Pie data={data} />
+                </div>
             ) : (
                 <p>Juega algún partido para mostrar datos</p>
             )}
