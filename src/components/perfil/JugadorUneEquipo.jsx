@@ -40,7 +40,7 @@ const JugadorUneEquipo = () => {
             })
             .then(data => {
                 alert(data.message || "Unido al equipo correctamente");
-                //Guardamos el equipo en el localStorage
+                //Guardamos el equipo en el localStorage, el id
                 localStorage.setItem("equipo", equipoSeleccionado)
                 //Redirigimos a la página de perfil
                 window.location.href = "/perfil"
