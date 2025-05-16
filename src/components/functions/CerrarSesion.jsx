@@ -1,7 +1,7 @@
 import API_URL from '../functions/APIURL'
 export const CerrarSesion = () => {
 
-  // Función para cerrar sesión
+  // Función para cerrar sesión, prueba
     const token = localStorage.getItem("access_token");
     if (!token) {
       console.error("No se encontró token de autenticación.");
