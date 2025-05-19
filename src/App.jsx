@@ -14,19 +14,24 @@ import EstadisticasPageComponent from './components/routes/EstadisticasPageCompo
 function App() {
   //Usamos browserRouter para manejar las rutas de la aplicación
   return (
-    <BrowserRouter>
-      <NavComponent />
-      <Routes>
-        <Route path="/" element={<HomePageComponent />} />
-        <Route path="/pistas" element={<Pistas />} />
-        <Route path="/login" element={<LoginPageComponent />} />
-        <Route path="/registro" element={<RegistroPageComponent />} />
-        <Route path="/perfil" element={<PerfilComponent />} />
-        <Route path="/reservar/:id" element={<PistaSeleccionada />} />
-        <Route path="/estadisticas" element={<EstadisticasPageComponent />} />
-      </Routes>
-      <FooterComponent />
-    </BrowserRouter> 
+    //Usamos el div con min-h-screen para que el footer siempre esté al final de la página
+    <div className="min-h-screen flex flex-col">
+      <BrowserRouter>
+        <NavComponent />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePageComponent />} />
+            <Route path="/pistas" element={<Pistas />} />
+            <Route path="/login" element={<LoginPageComponent />} />
+            <Route path="/registro" element={<RegistroPageComponent />} />
+            <Route path="/perfil" element={<PerfilComponent />} />
+            <Route path="/reservar/:id" element={<PistaSeleccionada />} />
+            <Route path="/estadisticas" element={<EstadisticasPageComponent />} />
+          </Routes>
+        </main>
+        <FooterComponent />
+      </BrowserRouter>
+    </div>
   )
 }
 

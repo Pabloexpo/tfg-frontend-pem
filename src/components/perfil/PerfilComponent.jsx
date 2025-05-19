@@ -136,47 +136,54 @@ const PerfilComponent = () => {
                         </form>
                     </article>
                     {/* formulario para tratar el tema de los equipos */}
-                    <article className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-evenly items-center">
-                        {/* si no hay equipo, mostramos la opción de unirse a uno o crear uno nuevo */}
-                        {equipo == 'null' ? (
-                            unirseEquipo == 'eleccion' ? (
-                                <div>
-                                    <h2 className="text-xl font-semibold mb-2">¿Quieres unirte a un equipo o crear uno?</h2>
-                                    <div className='flex flex-col justify-between my-3'>
-                                        <button onClick={() => setUnirseEquipo('crear')} className="bg-primary text-white font-bold py-2 px-4 my-2 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto">
-                                            Crear equipo
-                                        </button>
-                                        <button onClick={() => setUnirseEquipo('unirse')} className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto">Unirse a un equipo</button>
+                    {rol !== "3"  ?  (
+                        <article className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-evenly items-center">
+                            {/* si no hay equipo, mostramos la opción de unirse a uno o crear uno nuevo */}
+                            {(equipo == 'null') ? (
+                                unirseEquipo == 'eleccion' ? (
+                                    <div >
+                                        <h2 className="text-xl font-semibold mb-2">¿Quieres unirte a un equipo o crear uno?</h2>
+                                        <div className='flex flex-col justify-between my-3'>
+                                            <button onClick={() => setUnirseEquipo('crear')} className="bg-primary text-white font-bold py-2 px-4 my-2 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto">
+                                                Crear equipo
+                                            </button>
+                                            <button onClick={() => setUnirseEquipo('unirse')} className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto">Unirse a un equipo</button>
+                                        </div>
                                     </div>
-                                </div>
-                            ) : unirseEquipo == 'crear' ? (
-                                <div className='flex flex-col justify-center items-center'>
-                                    <h2 className="text-xl font-semibold mb-2"></h2>
-                                    {/* implantamos aqui el componente para crear un equipo */}
-                                    <JugadorSinEquipo id={id} onEquipoCreado={equipoCreado} />
-                                </div>
+                                ) : unirseEquipo == 'crear' ? (
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <h2 className="text-xl font-semibold mb-2"></h2>
+                                        {/* implantamos aqui el componente para crear un equipo */}
+                                        <JugadorSinEquipo id={id} onEquipoCreado={equipoCreado} />
+                                    </div>
+                                ) : (
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <h2 className="text-xl font-semibold mb-2">Unirse a un equipo</h2>
+                                        {/* implantamos aqui el componente para unirse a un equipo */}
+                                        <JugadorUneEquipo />
+                                    </div>
+                                )
                             ) : (
                                 <div className='flex flex-col justify-center items-center'>
-                                    <h2 className="text-xl font-semibold mb-2">Unirse a un equipo</h2>
-                                    {/* implantamos aqui el componente para unirse a un equipo */}
-                                    <JugadorUneEquipo />
+                                    <h2 className="text-xl font-semibold mb-2">Equipo: {localStorage.equipo_nombre || equipoNombre}</h2>
+                                    <button
+                                        className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto"
+                                        onClick={() => setPeticionAbandono(true)}>Petición de cese de equipo</button>
+                                    <span className='p-4'>{alertaDisolucion && "El Administrador será notificado de la petición de cese y será quién tenga la última palabra"}</span>
+                                    {peticionAbandono && <PeticionAbandono id={id} equipo={equipo} setPeticionAbandono={setPeticionAbandono} />}
+                                    <div className='flex md:flex-row justify-center flex-col items-center'>
+                                        <IntegrantesEquipo equipo={equipo} />
+                                        <CantidadPartidosEquipo equipo={equipo} />
+                                    </div>
                                 </div>
-                            )
-                        ) : (
-                            <div className='flex flex-col justify-center items-center'>
-                                <h2 className="text-xl font-semibold mb-2">Equipo: {localStorage.equipo_nombre || equipoNombre}</h2>
-                                <button
-                                    className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto"
-                                    onClick={() => setPeticionAbandono(true)}>Petición de cese de equipo</button>
-                                <span className='p-4'>{alertaDisolucion && "El Administrador será notificado de la petición de cese y será quién tenga la última palabra"}</span>
-                                {peticionAbandono && <PeticionAbandono id={id} equipo={equipo} setPeticionAbandono={setPeticionAbandono} />}
-                                <div className='flex md:flex-row justify-center flex-col items-center'>
-                                    <IntegrantesEquipo equipo={equipo} />
-                                    <CantidadPartidosEquipo equipo={equipo} />
-                                </div>
-                            </div>
-                        )}
-                    </article>
+                            )}
+                        </article>
+                    ) : (
+                        <article className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-center items-center">
+                            <h2 className="text-xl font-semibold mb-2">Tienes el rol de árbitro</h2>
+                            <h3 className='text-lg'>No puedes pertenecer a ningún equipo</h3>
+                        </article>
+                    )}
                 </div>
             </section>
             {/* En caso de ser administrador, mostramos el componente de administrador */}

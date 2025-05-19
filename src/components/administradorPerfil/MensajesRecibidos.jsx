@@ -1,49 +1,79 @@
-import React, { use } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import API_URL from '../functions/APIURL'
+import ModalMensaje from './ModalMensaje'
 
 const MensajesRecibidos = () => {
-    // Este componente se encargará de mostrar los mensajes recibidos por el administrador
-    const [mensajes, setMensajes] = React.useState([]);
-    useEffect(() => {
+    const [mensajes, setMensajes] = useState([])
+    const [modalAbierto, setModalAbierto] = useState(false)
+    const [mensajeSeleccionado, setMensajeSeleccionado] = useState(null)
+
+    //extraemos el fetch del useEffect para actualizar el componente al mandar el mensaje
+    const fetchMensajes = () => {
         fetch(`${API_URL}getMensajes`)
             .then(response => response.json())
-            .then(data => {
-                setMensajes(data.mensajes)
-                console.log(data.mensajes)
-            })
-            .catch(error => console.error('Error fetching mensajes:', error));
+            .then(data => setMensajes(data.mensajes))
+            .catch(error => console.error('Error fetching mensajes:', error))
+    }
+
+    useEffect(() => {
+        fetchMensajes()
     }, [])
+
+    //funcion con la que abrimos el modal
+    const abrirModal = (msj) => {
+        setMensajeSeleccionado(msj)
+        setModalAbierto(true)
+    }
+    // funcion para cerrar el modal
+    const cerrarModal = () => {
+        setModalAbierto(false)
+        setMensajeSeleccionado(null)
+    }
+    // Elaboramos una funcion para actualizar el componente cuando enviemos una respuesta
+    const respuestaEnviada = ()=>{
+        cerrarModal()
+        fetchMensajes()
+    }
+
     return (
-        <div className="overflow-x-auto md:overflow-x-visible">
+        <div className="relative overflow-x-auto">
             <table className="min-w-full table-auto bg-white border border-gray-200 rounded-lg shadow-md">
-                <tr className="bg-gray-100">
-                    <th className="whitespace-nowrap py-2 px-4 text-left text-gray-600">
-                        Nombre
-                    </th>
-                    <th className="whitespace-nowrap py-2 px-4 text-left text-gray-600">
-                        Email
-                    </th>
-                    <th className="whitespace-nowrap py-2 px-4 text-left text-gray-600 md:whitespace-normal md:break-words">
-                        Mensaje
-                    </th>
-                </tr>
-                {mensajes.map((mensaje) => (
-                    <tr key={mensaje.id} className="border-b border-gray-200">
-                        <td className="whitespace-nowrap py-2 px-4">
-                            {mensaje.nombre}
-                        </td>
-                        <td className="whitespace-nowrap py-2 px-4">
-                            {mensaje.email}
-                        </td>
-                        <td className="whitespace-nowrap md:whitespace-normal md:break-words py-2 px-4">
-                            {mensaje.mensaje}
-                        </td>
+                <thead>
+                    <tr className="bg-gray-100">
+                        <th className="py-2 px-4 text-left text-gray-600">Nombre</th>
+                        <th className="py-2 px-4 text-left text-gray-600">Email</th>
+                        <th className="py-2 px-4 text-left text-gray-600">Mensaje</th>
+                        <th />
                     </tr>
-                ))}
+                </thead>
+                <tbody>
+                    {mensajes.map(mensaje => (
+                        <tr key={mensaje.id} className="border-b border-gray-200">
+                            <td className="py-2 px-4 whitespace-nowrap">{mensaje.nombre}</td>
+                            <td className="py-2 px-4 whitespace-nowrap">{mensaje.email}</td>
+                            <td className="py-2 px-4 whitespace-normal break-words line-clamp-3">{mensaje.mensaje}</td>
+                            <td className="py-2 px-4">
+                                <button
+                                    onClick={() => abrirModal(mensaje)}
+                                    className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300"
+                                >
+                                    Responder
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
+
+            {/* Modal */}
+            {modalAbierto && mensajeSeleccionado && (
+                <ModalMensaje
+                    mensajeSeleccionado={mensajeSeleccionado}
+                    cerrarModal={cerrarModal}
+                    respuestaEnviada={respuestaEnviada}
+                />
+            )}
         </div>
-    );
+    )
 }
 export default MensajesRecibidos
