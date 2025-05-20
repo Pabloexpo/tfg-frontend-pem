@@ -47,10 +47,11 @@ export default function CalendarioComponent({ pista }) {
 
         // Si estamos en vista mensual y hacemos clic, cambiamos a vista semanal
         if (vistaCalendario.view.type === 'dayGridMonth') {
-            vistaCalendario.changeView('timeGridWeek', info.dateStr);
-            setVistaActual('timeGridWeek');
+            vistaCalendario.changeView('timeGridDay', info.dateStr);
+            setVistaActual('timeGridDay');
             return;  // Salimos después de cambiar la vista
         }
+
         // Seleccionamos la fecha del calendario con el parametro info
         const fechaSeleccionada = new Date(info.dateStr).toISOString()
         // Verificamos si la fecha está ya reservada, puesto que la comparamos con la variable eventos (las fechas ya seleccionadas de la BBDD)
@@ -89,19 +90,18 @@ export default function CalendarioComponent({ pista }) {
     }
 
     return (
-        <div className="md:w-3/4 lg:w-1/2 w-full mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
             <div className="h-4/6 md:h-300px">
                 <FullCalendar
-                    //plugins típicos de fullCalendar
                     plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
                     initialView={vistaActual}
                     locale={esLocale}
-                    height="490px"
-                    // Estilo del calendario
+                    height="auto" 
+                    contentHeight="auto"
                     headerToolbar={{
                         left: 'prev,next',
                         center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        right: window.innerWidth < 640 ? 'dayGridMonth' : 'dayGridMonth,timeGridWeek,timeGridDay' // Ocultamos los botones en móvil de semana y día para mejor experiencia visual
                     }}
                     buttonText={{
                         month: 'Mes',
@@ -109,13 +109,14 @@ export default function CalendarioComponent({ pista }) {
                         day: 'Día',
                         today: 'Hoy'
                     }}
-                    // Hora inicial del calendario
                     slotLabelFormat={{
                         hour: '2-digit',
                         minute: '2-digit',
-                        meridiem: false
+                        meridiem: false,
+                        hour12: false
                     }}
                     slotMinTime="10:00:00"
+                    slotMinHeight={100}
                     slotDuration="02:00:00"
                     allDaySlot={false}
                     selectable={true}
@@ -124,6 +125,13 @@ export default function CalendarioComponent({ pista }) {
                     selectOverlap={false}
                     eventDisplay="block"
                     eventClassNames={() => ['full-width-event']}
+                    dayHeaderFormat={{
+                        weekday: 'short',
+                        day: 'numeric',
+                        month: 'short',
+                        omitCommas: true
+                    }}
+
                 />
             </div>
 

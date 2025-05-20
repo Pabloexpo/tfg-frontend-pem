@@ -28,7 +28,7 @@ const PistaSeleccionada = () => {
         <main className='max-w-[1200px] mx-auto min-h-30 my-7'>
             {/* Vamos a hacer un grid de dos columnas donde en una vamos a poner los datos de la pista en la otra vamos a hacer la programatica de las reservas */}
             <div className='grid grid-cols-1 md:grid-cols-1 gap-4'>
-                <div className=' bg-white rounded-lg p-5 w-5/6 md:w-full mx-auto'>
+                <div className=' bg-white rounded-lg p-5 w-11/12 md:w-full mx-auto'>
                     <h1 className=' text-3xl font-bold mb-5'>Detalles de la pista</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div className='flex flex-col justify-evenly'>
@@ -44,7 +44,7 @@ const PistaSeleccionada = () => {
                     </div>
 
                 </div>
-                <div className='bg-white rounded-lg p-5 w-5/6 md:w-full mx-auto'>
+                <div className='bg-white rounded-lg p-5 w-11/12 md:w-full mx-auto'>
                     <h1 className='text-3xl font-bold mb-5'>Reservar pista</h1>
                     {(localStorage.equipo !== 'null' && localStorage.access_token) && (
                         <>

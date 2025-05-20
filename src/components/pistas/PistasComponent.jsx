@@ -17,7 +17,7 @@ const Pistas = () => {
             <h1 className="text-center text-2xl font-bold mb-4">Pistas Disponibles</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-5/6 md:w-full mx-auto">
                 {pistas.map(pista => (
-                    <div key={pista.id} className="bg-white p-4 rounded hover:shadow-md flex flex-col h-full">
+                    <div key={pista.id} className="bg-white p-4 rounded hover:shadow-md flex flex-col h-full ">
                         <h3 className="text-xl font-semibold mb-2 min-h-14">{pista.pista_nombre}</h3>
                         <div className="overflow-hidden rounded mb-2">
                             <img

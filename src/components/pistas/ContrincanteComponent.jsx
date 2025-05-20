@@ -40,7 +40,7 @@ const ContrincanteComponent = ( props ) => {
     return (
         <>
             { !reservaFinalizada ? (
-                <div>
+                <div className='flex justify-between items-center'>
                     <select
                         className="border-2 border-primary rounded p-2 m-2 hover:border-secondary w-4/5"
                         onChange={e => setEquipo2(e.target.value)}

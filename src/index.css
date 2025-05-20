@@ -73,7 +73,7 @@ body {
 }
 .full-width-event {
     width: 100% !important;
-    height: 150% !important;
+    height: 140% !important;
     display: flex;
     align-items: center;
     justify-content: center;

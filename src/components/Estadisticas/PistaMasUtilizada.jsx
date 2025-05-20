@@ -20,7 +20,7 @@ const PistaMasUtilizada = () => {
             <p className='text-xl font-bold text-center'>{pista}</p>
             <p className='text-center'>{cantidad} partidos </p>
             <div className='mx-auto' >
-          <Link to="/pistas">
+          <Link to="/estadisticas">
             <button className='bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300'>
               ¡Visita todas nuestras estadísticas!
             </button>
