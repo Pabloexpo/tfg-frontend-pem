@@ -50,9 +50,14 @@ const NavComponent = () => {
               </li>
             </>
           ) : (
-            <li className="hover:text-secondary">
-              <Link to="/login">Iniciar sesión</Link>
-            </li>
+            <>
+              <li onClick={closeMenu} className="hover:text-secondary">
+                <Link to="/login">Iniciar sesión</Link>
+              </li>
+              <li onClick={closeMenu} className="hover:text-secondary">
+                <Link to="/registro">Registro</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
@@ -79,9 +84,14 @@ const NavComponent = () => {
               </li>
             </>
           ) : (
-            <li onClick={closeMenu} className="hover:text-secondary">
-              <Link to="/login">Iniciar sesión</Link>
-            </li>
+            <>
+              <li onClick={closeMenu} className="hover:text-secondary">
+                <Link to="/login">Iniciar sesión</Link>
+              </li>
+              <li onClick={closeMenu} className="hover:text-secondary">
+                <Link to="/registro">Registro</Link>
+              </li>
+            </>
           )}
         </ul>
       )}

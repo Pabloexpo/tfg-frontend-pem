@@ -13,6 +13,7 @@ import CantidadPartidosEquipo from '../Estadisticas/CantidadPartidosEquipo';
 import PartidosArbitradosº from './PartidosArbitrados';
 import PartidosArbitrados from './PartidosArbitrados';
 import IntegrantesEquipo from './IntegrantesEquipo';
+import EliminarUsuario from './EliminarUsuario';
 
 
 const PerfilComponent = () => {
@@ -129,11 +130,13 @@ const PerfilComponent = () => {
                                     <span className="text-red-500 block my-2">{errorSpan}</span>
                                 )}
                             </div>
-                            <div className='flex justify-center items-center my-3'>
-                                <button className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto"
+                            <div className='flex justify-between m-3 flex-col md:flex-row'>
+                                <button className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 my-2 mx-auto"
                                 >Actualizar datos</button>
+                                {rol !== "1" && <EliminarUsuario id={id} />}
                             </div>
                         </form>
+                        
                     </article>
                     {/* formulario para tratar el tema de los equipos */}
                     {rol !== "3"  ?  (

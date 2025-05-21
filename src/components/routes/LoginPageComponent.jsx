@@ -48,14 +48,17 @@ const LoginPageComponent = () => {
                         className="border-2 border-primary rounded p-2 m-2 hover:border-secondary w-full" />
                 </div>
                 <div className='flex flex-col justify-center items-center ml-4'>
-                    <button type="submit" className="m-5 w-full bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 mx-0.5">
+                    <button type="submit" className="my-5 mx-auto w-full bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300">
                         Iniciar sesión
                     </button>
                 </div>
             </form>
-            <button type="submit" className="mx-auto my-2 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300">
-                <Link to="/registro">Registrarse</Link>
-            </button>
+            <div className='flex flex-col justify-center items-center'>
+                <button type="submit" className="ml-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300">
+                    <Link to="/registro">Registrarse</Link>
+                </button>
+            </div>
+
             {error && (
                 <div style={{ color: "red", marginTop: "1rem", textAlign: "center" }}>
                     {error}

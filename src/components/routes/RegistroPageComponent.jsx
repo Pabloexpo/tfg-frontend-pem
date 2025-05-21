@@ -67,9 +67,11 @@ const RegistroPageComponent = () => {
             if (!result.success) {
               alert(result.error);
               setError(result.error);
+            } else {
+              window.location.href = '/';
             }
           });
-        navigate('/'); // Redirigimos al usuario a la página de inicio de sesión
+        // navigate('/'); // Redirigimos al usuario a la página de inicio de sesión
       })
       .catch((err) => {
         console.error("Error al registrar el usuario:", err);
