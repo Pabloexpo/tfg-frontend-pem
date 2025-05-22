@@ -25,7 +25,8 @@ cd tfg-frontend-pem
 # Paso 3: Instala las dependencias necesarias.
 npm i
 
-# Paso 4: En APIURL.jsx, establece la dirección dónde está alojado el backend de la apliación, el cuál podrás usarlo en local
+# Paso 4: En APIURL.jsx, establece la dirección dónde está 
+#alojado el backend de la apliación, el cuál podrás usarlo en local
 
 # Paso 5: Inicia el servidor de desarrollo con recarga automática y vista previa instantánea.
 npm run dev

@@ -26,20 +26,23 @@ export default function CalendarioComponent({ pista }) {
         // realizamos el evento para redimensionar el calendario
         window.addEventListener('resize', redimensionar)
     }, [])
-
-    useEffect(() => {
-        console.log(pista)
-        setLocalidad(pista.localidad)
+    const cargarEventos = () => {
         fetch(`${API_URL}reservasPista/${pista.pista_id}`)
             .then(res => res.json())
-            // Recogemos las reservas que tenemos de la pista y en cada reserva, ponemos un objeto con el candado y la fecha en si 
             .then(({ reservas }) => {
                 setEventos(reservas.map(r => ({
                     title: '🔒',
                     start: r.reserva_fecha
-                })))
-            })
-    }, [pista])
+                })));
+            });
+    };
+
+    useEffect(() => {
+        setLocalidad(pista.localidad);
+        // Cargamos el evento al cargar el componente
+        cargarEventos();  
+    }, [pista]);
+
 
     const seleccionarFecha = info => {
         // Obtenemos la vista actual desde FullCalendar
@@ -96,7 +99,7 @@ export default function CalendarioComponent({ pista }) {
                     plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
                     initialView={vistaActual}
                     locale={esLocale}
-                    height="auto" 
+                    height="auto"
                     contentHeight="auto"
                     headerToolbar={{
                         left: 'prev,next',
@@ -142,7 +145,7 @@ export default function CalendarioComponent({ pista }) {
                     </h3>
                     <div className='flex justify-around flex-col md:flex-row'>
                         <ClimaComponent fecha={dia} hora={hora} localidad={localidad} />
-                        <ContrincanteComponent fecha={dia} hora={hora} pista={pista.pista_id} />
+                        <ContrincanteComponent fecha={dia} hora={hora} pista={pista.pista_id} actualizarEventos={cargarEventos}/>
                     </div>
                 </div>
             ) : (

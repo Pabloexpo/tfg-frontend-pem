@@ -33,6 +33,7 @@ const ContrincanteComponent = ( props ) => {
         .then(data => {
             console.log("La pista ha sido reservada", data);
             setReservaFinalizada(true);
+            props.actualizarEventos();
         })
         .catch(error => console.error("Error:", error));
     };

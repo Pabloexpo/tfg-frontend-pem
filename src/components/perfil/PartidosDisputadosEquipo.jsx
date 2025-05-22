@@ -3,8 +3,8 @@ import API_URL from '../functions/APIURL';
 
 const PartidosDisputadosEquipo = ({ equipo }) => {
   const [partidos, setPartidos] = useState([]);
-  const [page, setPage]           = useState(1);
-  const [lastPage, setLastPage]   = useState(1);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
   const perPage = 9; //Ponemos 9 para hacer el grid de 3x3 en escritorio
 
   useEffect(() => {
@@ -15,7 +15,12 @@ const PartidosDisputadosEquipo = ({ equipo }) => {
         setLastPage(last_page);
       })
       .catch(err => console.error('Error fetching partidos:', err));
-  }, [equipo, page]);
+  }, [equipo, page, lastPage]);
+  useEffect(() => {
+    // Al cambiar de equipo, reiniciamos a la primera página
+    setPage(1);
+  }, [equipo]);
+
 
   return (
     <section className="px-4 py-8">
