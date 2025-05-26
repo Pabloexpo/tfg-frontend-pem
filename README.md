@@ -41,5 +41,5 @@ Este proyecto está construido con:
 - JavaScript
 - React
 - FullCalendar
-- CharJS
+- ChartJS
 - Tailwind CSS
