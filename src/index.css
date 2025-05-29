@@ -82,3 +82,27 @@ body {
     border: none !important; /* Sin bordes */
     border-radius: 4px; /* Bordes redondeados */
 }
+
+@keyframes bote {
+  0% {
+    transform: translate(-200px, -300px) scale(0.7);
+    opacity: 0;
+  }
+  40% {
+    transform: translate(0px, 0px) scale(1.1);
+    opacity: 1;
+  }
+  55% {
+    transform: translate(0px, -20px) scale(0.95);
+  }
+  70% {
+    transform: translate(0px, 0px) scale(1.02);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.logo-bote {
+  animation: bote 3s ease-out forwards;
+}

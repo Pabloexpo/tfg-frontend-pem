@@ -136,7 +136,7 @@ const RegistroPageComponent = () => {
         <div className='flex flex-col w-full'>
           {/* Mostramos requisito de contraseña al clicar */}
           {hiddenSpan && (
-            <p className="text-sm text-gray-600 px-2 py-1 bg-yellow-100 border border-yellow-400 rounded my-1 whitespace-nowrap">
+            <p className="text-sm text-gray-600 px-2 py-1 bg-yellow-100 border border-yellow-400 rounded my-1">
               {hiddenSpan}
             </p>
           )}

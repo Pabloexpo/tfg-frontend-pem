@@ -17,7 +17,7 @@ const NavComponent = () => {
         {/* Logo */}
         <div>
           <Link to="/">
-            <img className='w-20' src="/logo-recortado.svg" alt="Logo" />
+            <img className='w-20 logo-bote' src="/logo-recortado.svg" alt="Logo" />
           </Link>
         </div>
 
@@ -43,7 +43,7 @@ const NavComponent = () => {
           {localStorage.getItem('access_token') ? (
             <>
               <li className="hover:text-secondary">
-                <a href="#about" onClick={CerrarSesion}>Cerrar sesión</a>
+                <a onClick={CerrarSesion} className='cursor-pointer'>Cerrar sesión</a>
               </li>
               <li className="hover:text-secondary">
                 <Link to="/perfil">Perfil</Link>
@@ -77,7 +77,7 @@ const NavComponent = () => {
           {localStorage.getItem('access_token') ? (
             <>
               <li onClick={closeMenu} className="hover:text-secondary">
-                <a href="#about" onClick={CerrarSesion}>Cerrar sesión</a>
+                <a onClick={CerrarSesion}>Cerrar sesión</a>
               </li>
               <li onClick={closeMenu} className="hover:text-secondary">
                 <Link to="/perfil">Perfil</Link>

@@ -13,7 +13,7 @@ const PeticionAbandono = (props) => {
             }, 
             body: JSON.stringify({
                 "peticion_causa": motivo,
-                "peticion_equipo": props.equipo,
+                "peticion_equipo": localStorage.equipo,
             })
         }
         //Realizamos la llamada a la API para enviar la petición de abandono
