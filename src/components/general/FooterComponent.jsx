@@ -3,9 +3,19 @@ import React from 'react';
 const FooterComponent = () => {
     return (
         <footer className='bg-footer py-10 px-3'>
-            <section className='flex justify-around items-center flex-col md:flex-row m-3'>
+            <section className='flex justify-evenly items-center flex-col md:flex-row'>
                 <article className='text-white'>
                     <img src="/logo-recortado.svg" className='w-40 mb-5' alt="Logo de padelistas" />
+                </article>
+
+                <article className='flex justify-center w-full md:w-auto mb-5 md:mb-0'>
+                    <a href='https://creativecommons.org/licenses/by/4.0/deed.es' target='_blank'>
+                        <img
+                            src='https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png'
+                            className='w-28 md:w-24'
+                            alt="Licencia Creative Commons"
+                        />
+                    </a>
                 </article>
                 <article className='flex space-x-4'>
                     <a href="#" className="hover:opacity-80 transition duration-300">
@@ -31,11 +41,10 @@ const FooterComponent = () => {
                     </a>
                 </article>
             </section>
-            <section className='text-white text-center'>
+            <section className='text-white text-center mt-4'>
                 <p>&copy; 2025 Padelistas Cartagena. Todos los derechos reservados.</p>
             </section>
         </footer>
     );
 };
-
 export default FooterComponent;

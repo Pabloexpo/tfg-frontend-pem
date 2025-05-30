@@ -40,7 +40,7 @@ export default function CalendarioComponent({ pista }) {
     useEffect(() => {
         setLocalidad(pista.localidad);
         // Cargamos el evento al cargar el componente
-        cargarEventos();  
+        cargarEventos();
     }, [pista]);
 
 
@@ -129,11 +129,9 @@ export default function CalendarioComponent({ pista }) {
                     eventDisplay="block"
                     eventClassNames={() => ['full-width-event']}
                     dayHeaderFormat={{
-                        weekday: 'short',
-                        day: 'numeric',
-                        month: 'short',
-                        omitCommas: true
+                        weekday: 'long'
                     }}
+
 
                 />
             </div>
@@ -145,7 +143,7 @@ export default function CalendarioComponent({ pista }) {
                     </h3>
                     <div className='flex justify-around flex-col md:flex-row'>
                         <ClimaComponent fecha={dia} hora={hora} localidad={localidad} />
-                        <ContrincanteComponent fecha={dia} hora={hora} pista={pista.pista_id} actualizarEventos={cargarEventos}/>
+                        <ContrincanteComponent fecha={dia} hora={hora} pista={pista.pista_id} actualizarEventos={cargarEventos} />
                     </div>
                 </div>
             ) : (

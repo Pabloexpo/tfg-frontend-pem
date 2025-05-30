@@ -3,6 +3,8 @@ import API_URL from '../functions/APIURL'
 
 const PartidosPendientesEquipo = ({ equipo }) => {
     const [partidosPendientes, setPartidosPendientes] = useState([])
+    const [modalAbierto, setModalAbierto] = useState(false)
+    const [partido, setPartido] = useState({})
 
     useEffect(() => {
         if (equipo) {
@@ -26,10 +28,11 @@ const PartidosPendientesEquipo = ({ equipo }) => {
             }
         })
             .then(response => response.json())
-            .then(data => {                
+            .then(data => {
                 setPartidosPendientes((prevPartidos) =>
                     prevPartidos.filter((partido) => partido.reserva_id !== reserva_id)
                 );
+                setModalAbierto(false) //Cerramos el modal al eliminar la reserva
             })
             .catch(error => {
                 console.error('Error al aceptar la petición de cese:', error)
@@ -60,7 +63,10 @@ const PartidosPendientesEquipo = ({ equipo }) => {
                                     <td className="py-2 px-4">{partido.equipo2_nombre}</td>
                                     <td className="py-2 px-4">
                                         <button
-                                            onClick={() => cancelaReserva(partido.reserva_id)}
+                                            onClick={() => {
+                                              setModalAbierto(true)  
+                                              setPartido(partido.reserva_id) // Guardamos el partido para usarlo en la confirmación
+                                            } }
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
                                             Cancelar reserva
                                         </button>
@@ -77,7 +83,29 @@ const PartidosPendientesEquipo = ({ equipo }) => {
                     </tbody>
                 </table>
             </div>
-
+            {modalAbierto && (
+                <div className="fixed inset-0 bg-footer bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 relative">
+                        <h2 className="text-xl font-semibold mb-4">
+                            ¿Estás seguro de que quieres eliminar la reserva?
+                        </h2>
+                        <p className="mb-4 whitespace-pre-wrap">Esta acción no se puede deshacer.</p>
+                        <div className="flex justify-center">
+                            {/* Realizamos la confirmación de eliminación de usuario con este botón, que activará la función que elimina al usuario */}
+                            <button
+                                onClick={() => cancelaReserva(partido)}
+                                className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300">
+                                Eliminar
+                            </button>
+                            <button
+                                onClick={() => { setModalAbierto(false) }}
+                                className="ml-3 py-2 px-4 rounded border border-gray-300 hover:bg-gray-100 transition duration-200">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     )
 }
