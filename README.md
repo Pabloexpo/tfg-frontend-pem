@@ -4,8 +4,11 @@
 ## Información del proyecto
 
 Padelistas Cartagena es el proyecto fin de grado de Pablo Expósito Martínez en el GS de Desarrollo de Aplicaciones Web.
+```sh
+# Puedes encontrar este proyecto publicado en la siguiente URL:
+https://pem-padelistas.eu
 
-## Cómo editar este código
+```
 
 **Usar tu IDE preferido**
 
