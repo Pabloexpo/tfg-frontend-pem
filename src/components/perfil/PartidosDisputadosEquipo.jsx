@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import API_URL from '../functions/APIURL';
-
+import left from '../../assets/Padel_Arrow_Left_Blue_Transparent.png';
+import right from '../../assets/Padel_Arrow_Right_Blue_Transparent.png';
 const PartidosDisputadosEquipo = ({ equipo }) => {
   const [partidos, setPartidos] = useState([]);
   const [page, setPage] = useState(1);
@@ -64,7 +65,7 @@ const PartidosDisputadosEquipo = ({ equipo }) => {
           disabled={page <= 1}
           onClick={() => setPage(page - 1)}
         >
-          <img src='public\Padel_Arrow_Left_Blue_Transparent.png' className='w-10'></img>
+          <img src={left} className='w-10'></img>
         </button>
         <span>Página {page} de {lastPage}</span>
         <button
@@ -72,7 +73,7 @@ const PartidosDisputadosEquipo = ({ equipo }) => {
           disabled={page >= lastPage}
           onClick={() => setPage(page + 1)}
         >
-          <img src='public\Padel_Arrow_Right_Blue_Transparent.png' className='w-10'></img>
+          <img src={right} className='w-10'></img>
         </button>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import API_URL from '../functions/APIURL'
+import { toast } from 'react-toastify';
 const ModalMensaje = ({ mensajeSeleccionado, cerrarModal, respuestaEnviada }) => {
     const [respuesta, setRespuesta] = useState('')
     //Elaboramos un modal para responder los mensajes que recibe el administrador
@@ -20,7 +21,7 @@ const ModalMensaje = ({ mensajeSeleccionado, cerrarModal, respuestaEnviada }) =>
                 cerrarModal()
                 // Actualizar la lista de mensajes
                 respuestaEnviada()
-                alert('Respuesta enviada correctamente'); 
+                toast.success('Respuesta enviada al contacto'); 
             })
             .catch(error => console.error('Error al enviar respuesta:', error))
     }

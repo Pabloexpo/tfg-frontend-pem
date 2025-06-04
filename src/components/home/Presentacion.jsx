@@ -1,5 +1,5 @@
 import React from 'react'
-
+import welcomeImg from '../../assets/img-bienvenida.webp';
 const Presentacion = () => {
     return (
         <section className='max-w-[1200px] mx-auto grid grid-cols-1 gap-6 bg-white shadow-md rounded-lg p-6 w-5/6'>
@@ -9,7 +9,7 @@ const Presentacion = () => {
                 <p>¡Únete a nosotros y disfruta del pádel en Cartagena!</p>
             </article>
             <article className='flex justify-center items-center'>
-                <img src="src\assets\img-bienvenida.webp" alt="Pista de bienvenida" className='w-full max-w-md rounded-lg' />
+                <img src={welcomeImg} alt="Pista de bienvenida" className='w-full max-w-md rounded-lg' />
             </article>
         </section>
     )

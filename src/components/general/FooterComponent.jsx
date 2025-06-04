@@ -1,11 +1,14 @@
 import React from 'react';
-
+import facebookIcon from '../../assets/footer-icons/facebook-tfg.png';
+import instaIcon from '../../assets/footer-icons/insta-tfg.png';
+import whatsappIcon from '../../assets/footer-icons/whatsapp-tfg.png';
+import logo from '../../assets/logo-recortado.svg';
 const FooterComponent = () => {
     return (
         <footer className='bg-footer py-10 px-3'>
             <section className='flex justify-evenly items-center flex-col md:flex-row'>
                 <article className='text-white'>
-                    <img src="/logo-recortado.svg" className='w-40 mb-5' alt="Logo de padelistas" />
+                    <img src={logo} className='w-40 mb-5' alt="Logo de padelistas" />
                 </article>
 
                 <article className='flex justify-center w-full md:w-auto mb-5 md:mb-0'>
@@ -20,21 +23,21 @@ const FooterComponent = () => {
                 <article className='flex space-x-4'>
                     <a href="#" className="hover:opacity-80 transition duration-300">
                         <img
-                            src="/footer-icons/facebook-tfg.png"
+                            src={facebookIcon}
                             className='w-8 h-8'
                             alt="icono facebook"
                         />
                     </a>
                     <a href="#" className="hover:opacity-80 transition duration-300">
                         <img
-                            src="/footer-icons/insta-tfg.png"
+                            src={instaIcon}
                             className='w-8 h-8'
                             alt="icono instagram"
                         />
                     </a>
                     <a href="#" className="hover:opacity-80 transition duration-300">
                         <img
-                            src="/footer-icons/whatsapp-tfg.png"
+                            src={whatsappIcon}
                             className='w-8 h-8'
                             alt="icono whatsapp"
                         />

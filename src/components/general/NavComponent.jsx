@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CerrarSesion } from '../functions/CerrarSesion.jsx';
 import { FaBars, FaTimes } from 'react-icons/fa';
-
+import logo from '../../assets/logo-recortado.svg';
 const NavComponent = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -21,7 +21,7 @@ const NavComponent = () => {
       <div className='flex justify-between items-center max-w-7xl mx-auto'>
         <div>
           <Link to="/">
-            <img className='w-20 logo-bote' src="/logo-recortado.svg" alt="Logo" />
+            <img className='w-20 logo-bote' src={logo} alt="Logo" />
           </Link>
         </div>
 

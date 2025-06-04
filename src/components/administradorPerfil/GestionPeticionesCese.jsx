@@ -1,5 +1,6 @@
 import React, { useEffect, use } from 'react'
 import API_URL from '../functions/APIURL'
+import { toast } from 'react-toastify';
 const GestionPeticionesCese = () => {
     //Recogemos las peticiones de cese de la base de datos y las mostramos en una tabla
     //Cada fila de la tabla tendrá un botón para aceptar o rechazar la petición
@@ -32,6 +33,7 @@ const GestionPeticionesCese = () => {
                     //Es decir, filtramos por las peticiones que haya EXCEPTUANDO la que hemos aceptado
                     prevPeticiones.filter((peticion) => peticion.peticion_id !== peticion_id)
                 );
+                toast.success('Has aceptado la petición de cese')
             })
             .catch(error => {
                 console.error('Error al aceptar la petición de cese:', error)
@@ -50,6 +52,7 @@ const GestionPeticionesCese = () => {
                 setPeticionesCese((prevPeticiones) =>
                     prevPeticiones.filter((peticion) => peticion.peticion_id !== peticion_id)
                 );
+                toast.success('Has rechazado la petición de cese')
             })
             .catch(error => {
                 console.error('Error al rechazar la petición de cese:', error)

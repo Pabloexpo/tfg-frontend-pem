@@ -2,6 +2,7 @@ import React, { use } from 'react'
 import { useState, useEffect } from 'react'
 import API_URL from '../functions/APIURL'
 import { getArbitros } from '../functions/getArbitros'
+import { toast } from 'react-toastify';
 const PartidosDisputados = () => {
   const [reservas, setReservas] = useState([])
   const [arbitros, setArbitros] = useState([])
@@ -114,6 +115,7 @@ const PartidosDisputados = () => {
                         .then(data => {
                           //Refrescamos la lista de reservas después de insertar el partido
                           fetchReservas();
+                          toast.success('Partido insertado correctamente');
                         })
                         .catch(error => {
                           console.error('Error al insertar el partido:', error);
