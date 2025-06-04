@@ -133,7 +133,7 @@ const PerfilComponent = () => {
                             <div className='flex justify-between m-3 flex-col md:flex-row'>
                                 <button className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 my-2 mx-auto"
                                 >Actualizar datos</button>
-                                {rol !== "1" && <EliminarUsuario id={id} />}
+                                {rol == "2" && <EliminarUsuario id={id} />}
                             </div>
                         </form>
                         
