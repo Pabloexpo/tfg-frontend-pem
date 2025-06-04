@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import API_URL from '../functions/APIURL'
-
+import { toast } from 'react-toastify';
 const PartidosPendientesEquipo = ({ equipo }) => {
     const [partidosPendientes, setPartidosPendientes] = useState([])
     const [modalAbierto, setModalAbierto] = useState(false)
@@ -33,6 +33,7 @@ const PartidosPendientesEquipo = ({ equipo }) => {
                     prevPartidos.filter((partido) => partido.reserva_id !== reserva_id)
                 );
                 setModalAbierto(false) //Cerramos el modal al eliminar la reserva
+                toast.success('Reserva cancelada correctamente')
             })
             .catch(error => {
                 console.error('Error al aceptar la petición de cese:', error)

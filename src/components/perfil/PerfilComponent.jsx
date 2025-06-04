@@ -14,6 +14,7 @@ import PartidosArbitradosº from './PartidosArbitrados';
 import PartidosArbitrados from './PartidosArbitrados';
 import IntegrantesEquipo from './IntegrantesEquipo';
 import EliminarUsuario from './EliminarUsuario';
+import { toast } from 'react-toastify';
 
 
 const PerfilComponent = () => {
@@ -79,7 +80,7 @@ const PerfilComponent = () => {
                     setNombre(nuevoNombre);
                     localStorage.setItem("nombre", nuevoNombre);
                 }
-                alert("Usuario actualizado correctamente");
+                toast.success("Datos actualizados correctamente");
                 return { success: true, data };
             })
             .catch(error => {

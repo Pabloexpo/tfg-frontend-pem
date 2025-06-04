@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import BienvenidaComponent from '../home/BienvenidaComponent'
 import PistaBienvenida from '../home/PistaBienvenida'
 import Presentacion from '../home/Presentacion'
@@ -8,8 +9,20 @@ import EquipoMes from '../Estadisticas/EquipoMes'
 import PistaMasUtilizada from '../Estadisticas/PistaMasUtilizada'
 import UltimosPartidosComponent from '../home/UltimosPartidosComponent'
 import ProximosPartidosComponent from '../home/ProximosPartidosComponent'
+import { toast } from 'react-toastify';
 
 const HomePageComponent = () => {
+  //En caso de que tengamos localstorage con registro, mostramos un mensaje de bienvenida
+  useEffect(() => {
+    if (localStorage.registro_exitoso) {
+      //para saltarnos el modo estricto de react, usamos isActive de Toast para saber si el toast está mostrandose, asignando un id único
+      const id = 'registro_exitoso';
+      if (!toast.isActive(id)) {
+        toast.success(`Te has registado correctamente, ${localStorage.nombre}`, { toastId: id });
+      }
+      localStorage.removeItem('registro_exitoso'); //borramos el elemento para que no recargue siempre 
+    }
+  }, []);
   return (
     <div>
       <BienvenidaComponent />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUsuario } from '../functions/loginUsuario';
 import API_URL from '../functions/APIURL';
+import { toast } from 'react-toastify';
 
 const RegistroPageComponent = () => {
   const [nombre, setNombre] = useState('');
@@ -61,14 +62,15 @@ const RegistroPageComponent = () => {
         return response.json();
       })
       .then((data) => {
-        alert("Usuario registrado exitosamente");
         loginUsuario(email, password, setToken)
           .then(result => {
             if (!result.success) {
               alert(result.error);
               setError(result.error);
             } else {
-              window.location.href = '/';
+              localStorage.setItem('registro_exitoso', 'true'); //Registramos que nos hemos registrado para actualizar la página principal y mostrar
+              navigate('/');
+
             }
           });
         // navigate('/'); // Redirigimos al usuario a la página de inicio de sesión
