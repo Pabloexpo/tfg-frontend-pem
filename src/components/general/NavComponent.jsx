@@ -76,7 +76,7 @@ const NavComponent = () => {
           <li onClick={closeMenu} className="hover:text-secondary">
             <Link to="/estadisticas">Estadísticas</Link>
           </li>
-          {login ? (
+          {hayLogin ? (
             <>
               <li onClick={closeMenu} className="hover:text-secondary">
                 <a onClick={CerrarSesion}>Cerrar sesión</a>

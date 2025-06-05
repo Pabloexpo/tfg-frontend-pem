@@ -1,5 +1,6 @@
 import React from 'react'
 import API_URL from '../functions/APIURL'
+import { toast } from 'react-toastify';
 //Elaboramos una prop donde diremos si el form está en contacto o en la pág de inicio
 const FormContacto = ({inicio=false}) => {
   //Vamos a realizar un formulario de contacto para aprender a usar los estados y los hooks de react
@@ -8,6 +9,7 @@ const FormContacto = ({inicio=false}) => {
   const [mensaje, setMensaje] = React.useState('')
   //Establecemos un estado para comprobar si el mensaje fue enviado
   const [enviado, setEnviado] = React.useState(false)
+
 
   //Realizamos una funcion que se activará al enviar el formulario, al igual que en un evento en vanilla 
   function enviarFormulario(e) {
@@ -34,6 +36,7 @@ const FormContacto = ({inicio=false}) => {
       .then(data => {
         console.log('Mensaje enviado:', data);
         //Se nos envia el mensaje y limpiamos todo
+        toast.success('Mensaje enviado correctamente, ' + nombre.split(" ")[0] + ', te responderemos lo antes posible');
         setEnviado(true)
         setNombre('')
         setEmail('')
@@ -50,9 +53,7 @@ const FormContacto = ({inicio=false}) => {
     <div className={`${estilosForm} mx-auto grid grid-cols-1 gap-6 bg-white shadow-md rounded-lg p-6 w-5/6 md:w-3/6`}>
       <h2>Contacto</h2>
       {/* si el mensj está enviado, mostramos un mensaje de éxito */}
-      {enviado ? (<p>Mensaje enviado correctamente!</p>)
-        : (
-          <form onSubmit={enviarFormulario} className='flex flex-col'>
+           <form onSubmit={enviarFormulario} className='flex flex-col'>
             <label htmlFor="nombre">Nombre</label>
             <input
               type="text"
@@ -85,7 +86,6 @@ const FormContacto = ({inicio=false}) => {
               Enviar
             </button>
           </form>
-        )}
     </div>
   )
 }

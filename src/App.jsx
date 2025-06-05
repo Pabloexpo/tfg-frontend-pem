@@ -22,7 +22,7 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <BrowserRouter>
         {/* Implementamos el componente de navegación, al que le pasamos una key para que se desmonte y vuelva a montar al tener token */}
-        <NavComponent key={localStorage.getItem('access_token')}/>
+        <NavComponent />
         {/* Implementamos el ToastContainer con sus props para mostrar notificaciones */}
         <ToastContainer
           position="bottom-right"
