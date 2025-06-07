@@ -129,7 +129,7 @@ export default function CalendarioComponent({ pista }) {
                     eventDisplay="block"
                     eventClassNames={() => ['full-width-event']}
                     dayHeaderFormat={{
-                        weekday: 'long'
+                        weekday: 'narrow',
                     }}
 
 

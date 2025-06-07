@@ -139,8 +139,8 @@ const PerfilComponent = () => {
                         </form>
                         
                     </article>
-                    {/* formulario para tratar el tema de los equipos */}
-                    {rol !== "3"  ?  (
+                    {/* formulario para tratar el tema de los equipos, solo lo mostramos si eres jugador */}
+                    {rol == "2"  ?  (
                         <article className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-evenly items-center">
                             {/* si no hay equipo, mostramos la opción de unirse a uno o crear uno nuevo */}
                             {(equipo == 'null') ? (
@@ -184,7 +184,7 @@ const PerfilComponent = () => {
                         </article>
                     ) : (
                         <article className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-center items-center">
-                            <h2 className="text-xl font-semibold mb-2">Tienes el rol de árbitro</h2>
+                            <h2 className="text-xl font-semibold mb-2">No tienes el rol de jugador</h2>
                             <h3 className='text-lg'>No puedes pertenecer a ningún equipo</h3>
                         </article>
                     )}

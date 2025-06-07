@@ -22,23 +22,23 @@ const RegistroPageComponent = () => {
 
     // Validación de campos
     if (!nombre || !email || !password || !password2 || !rol) {
-      setErrorSpan("Por favor, completa todos los campos");
+      toast.error("Por favor, completa todos los campos");
       return;
     }
     const regexPwd = /^(?=.*\d).{6,}$/
     if (!regexPwd.test(password)) {
-      setErrorSpan("La contraseña debe tener al menos 6 caracteres y un número");
+      toast.error("La contraseña debe tener al menos 6 caracteres y un número");
       return;
     }
     const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regEmail.test(email)) {
-      setErrorSpan("Por favor, introduce un email válido");
+      toast.error("Por favor, introduce un email válido");
       return;
     }
 
 
     if (password !== password2) {
-      setErrorSpan("Las contraseñas no coinciden");
+      toast.error("Las contraseñas no coinciden");
       return;
     }
 

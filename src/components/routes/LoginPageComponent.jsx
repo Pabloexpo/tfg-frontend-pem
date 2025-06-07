@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUsuario } from '../functions/loginUsuario';
-
+import { toast } from 'react-toastify';
 
 const LoginPageComponent = () => {
     // Realizamos una funcion que redirige a la página de inicio en caso de login
@@ -18,7 +18,10 @@ const LoginPageComponent = () => {
     // Función que se ejecuta al enviar el formulario
     const envioForm = (e) => {
         e.preventDefault();
-
+        if (!email || !password) {
+            toast.error('Por favor, completa todos los campos');
+            return
+        }
         loginUsuario(email, password, setToken)
             .then(result => {
                 if (!result.success) {
