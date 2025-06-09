@@ -77,7 +77,7 @@ const RegistroPageComponent = () => {
       })
       .catch((err) => {
         console.error("Error al registrar el usuario:", err);
-        setError("El email de usuario ya está en uso, utiliza otro");
+        toast.error("El email de usuario ya está en uso, utiliza otro");
       });
   };
 
