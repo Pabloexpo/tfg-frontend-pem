@@ -158,13 +158,13 @@ const PerfilComponent = () => {
                                     <div className='flex flex-col justify-center items-center'>
                                         <h2 className="text-xl font-semibold mb-2"></h2>
                                         {/* implantamos aqui el componente para crear un equipo */}
-                                        <JugadorSinEquipo id={id} onEquipoCreado={equipoCreado} />
+                                        <JugadorSinEquipo id={id} onEquipoCreado={equipoCreado} onBack={() => setUnirseEquipo('eleccion')}/>
                                     </div>
                                 ) : (
                                     <div className='flex flex-col justify-center items-center'>
                                         <h2 className="text-xl font-semibold mb-2">Unirse a un equipo</h2>
                                         {/* implantamos aqui el componente para unirse a un equipo */}
-                                        <JugadorUneEquipo />
+                                        <JugadorUneEquipo onBack={() => setUnirseEquipo('eleccion')}/>
                                     </div>
                                 )
                             ) : (

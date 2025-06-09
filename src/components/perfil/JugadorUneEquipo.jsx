@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import API_URL from '../functions/APIURL'
-const JugadorUneEquipo = () => {
+import { toast } from 'react-toastify';
+
+const JugadorUneEquipo = ({ onBack }) => {
     const [equipos, setEquipos] = React.useState([])
     //Estado para saber a qué equipo elegimos 
     const [equipoSeleccionado, setEquipoSeleccionado] = React.useState('')
@@ -39,7 +41,6 @@ const JugadorUneEquipo = () => {
                 return response.json();
             })
             .then(data => {
-                alert(data.message || "Unido al equipo correctamente");
                 //Guardamos el equipo en el localStorage, el id
                 localStorage.setItem("equipo", equipoSeleccionado)
                 //Redirigimos a la página de perfil
@@ -66,6 +67,7 @@ const JugadorUneEquipo = () => {
                 ))}
             </select>
             <button className='bg-primary text-white font-bold py-2 px-4 my-2 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto' onClick={actualizarEquipo}>Seleccionar Equipo</button>
+            <button className='bg-primary text-white font-bold py-2 px-4 my-2 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto' onClick={onBack}>Volver</button>
         </div>
     )
 }

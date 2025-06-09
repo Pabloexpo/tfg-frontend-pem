@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import API_URL from '../functions/APIURL';
-
+import { toast } from 'react-toastify';
 const JugadorSinEquipo = (props) => {
     const [equipoNombre, setEquipoNombre] = useState('')
     const [id, setId] = props.id;
@@ -17,7 +17,7 @@ const JugadorSinEquipo = (props) => {
             })
         }
         e.preventDefault() //prevenimos el form
-        fetch(API_URL+'nuevoEquipo', options)
+        fetch(API_URL + 'nuevoEquipo', options)
             .then(response => response.json())
             .then(data => {
                 if (data.exito == false) {
@@ -30,6 +30,7 @@ const JugadorSinEquipo = (props) => {
                     setEquipoNombre(equipoNombre);
                     props.onEquipoCreado(equipoNombre); // Llamamos a la función del padre para actualizar el estado
                     localStorage.setItem("equipo_nombre", equipoNombre);
+                    toast.success("Equipo creado correctamente, " + equipoNombre);
                     return { data };
                 }
             })
@@ -43,14 +44,15 @@ const JugadorSinEquipo = (props) => {
             <form onSubmit={crearEquipo}>
                 <div className="grid grid-cols-1 md:grid-cols-2 text-center">
                     <label htmlFor="nombre" className='my-4'>Introduce el nombre del equipo</label>
-                    <input type="text" name='nombre' className='w-full border-2 border-primary rounded p-2 m-2 hover:border-secondary' placeholder='Nombre' onChange={(e) =>{
+                    <input type="text" name='nombre' className='w-full border-2 border-primary rounded p-2 m-2 hover:border-secondary' placeholder='Nombre' onChange={(e) => {
                         setEquipoNombre(e.target.value)
                         //localStorage.nom
                     }} />
                 </div>
-                <div className='flex justify-center items-center my-3'>
+                <div className='flex flex-row justify-center items-center my-3'>
                     <button className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto"
                     >Crear Equipo</button>
+                    <button className='bg-primary text-white font-bold py-2 px-4 my-2 rounded hover:bg-secondary hover:text-black transition duration-300 m-auto' onClick={props.onBack}>Volver</button>
                 </div>
             </form>
         </div>
