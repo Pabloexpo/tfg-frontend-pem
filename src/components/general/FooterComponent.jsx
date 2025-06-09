@@ -14,7 +14,7 @@ const FooterComponent = () => {
                 <article className='flex justify-center w-full md:w-auto mb-5 md:mb-0'>
                     <a href='https://creativecommons.org/licenses/by/4.0/deed.es' target='_blank'>
                         <img
-                            src='https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png'
+                            src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/CC_BY-SA_icon.svg/2560px-CC_BY-SA_icon.svg.png'
                             className='w-28 md:w-24'
                             alt="Licencia Creative Commons"
                         />
